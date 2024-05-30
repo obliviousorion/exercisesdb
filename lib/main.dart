@@ -44,14 +44,13 @@ class TestWidget extends ConsumerStatefulWidget {
 class _TestWidgetState extends ConsumerState<TestWidget> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       ref.read(bodyPartProvider.notifier).state = 'chest';
       print(ref.watch(bodyPartProvider));
 
-      print('calling riverpodapi now');
-      final repo = ref.watch(exerciseRepoProvider);
+      print('calling RiverpodAPI now');
+      final repo = ref.read(exerciseRepoProvider);
       await repo.execute();
     });
   }
